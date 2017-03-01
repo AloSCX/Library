@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LibraryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="idBook" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="authors" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="year" Type="date" Nullable="false" />
+          <Property Name="theme" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="idCategory" Type="int" Nullable="false" />
+          <Property Name="insertDate" Type="datetime" Nullable="false" />
+          <Property Name="modifyDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="insertDate" Type="datetime" Nullable="false" />
+          <Property Name="modifyDate" Type="datetime" />
+        </EntityType>
+        <Association Name="fk_IdCategoryBook">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="idCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="DelBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdBook" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DelCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCategory" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetAllBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetAllCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="InsBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Authors" Type="nvarchar" Mode="In" />
+          <Parameter Name="Year" Type="date" Mode="In" />
+          <Parameter Name="Theme" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdCategory" Type="int" Mode="In" />
+        </Function>
+        <Function Name="InsCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="UpdBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdBook" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Authors" Type="nvarchar" Mode="In" />
+          <Parameter Name="Year" Type="date" Mode="In" />
+          <Parameter Name="Theme" Type="nvarchar" Mode="In" />
+          <Parameter Name="IdCategory" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpdCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCategory" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="LibraryModelStoreContainer">
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_IdCategoryBook" Association="Self.fk_IdCategoryBook">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="idBook" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="authors" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="year" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="theme" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="idCategory" Type="Int32" Nullable="false" />
+          <Property Name="insertDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifyDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Category" Relationship="Self.fk_IdCategoryBook" FromRole="Book" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="idCategory" />
+          </Key>
+          <Property Name="idCategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="insertDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifyDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Book" Relationship="Self.fk_IdCategoryBook" FromRole="Category" ToRole="Book" />
+        </EntityType>
+        <Association Name="fk_IdCategoryBook">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="idCategory" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="idCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LibraryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Book" EntityType="Self.Book" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <AssociationSet Name="fk_IdCategoryBook" Association="Self.fk_IdCategoryBook">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <FunctionImport Name="DelBook">
+          <Parameter Name="IdBook" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DelCategory">
+          <Parameter Name="IdCategory" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllBook" ReturnType="Collection(LibraryModel.GetAllBook_Result)" />
+          <FunctionImport Name="GetAllCategory" ReturnType="Collection(LibraryModel.GetAllCategory_Result)" />
+          <FunctionImport Name="InsBook" ReturnType="Collection(Decimal)">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Authors" Mode="In" Type="String" />
+            <Parameter Name="Year" Mode="In" Type="DateTime" />
+            <Parameter Name="Theme" Mode="In" Type="String" />
+            <Parameter Name="IdCategory" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="InsCategory" ReturnType="Collection(Decimal)">
+          <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdBook" ReturnType="Collection(LibraryModel.UpdBook_Result)">
+            <Parameter Name="IdBook" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Authors" Mode="In" Type="String" />
+            <Parameter Name="Year" Mode="In" Type="DateTime" />
+            <Parameter Name="Theme" Mode="In" Type="String" />
+            <Parameter Name="IdCategory" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdCategory" ReturnType="Collection(LibraryModel.UpdCategory_Result)">
+            <Parameter Name="IdCategory" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetAllBook_Result">
+          <Property Type="Int32" Name="idBook" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="authors" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="year" Nullable="false" />
+          <Property Type="String" Name="theme" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="idCategory" Nullable="false" />
+          <Property Type="DateTime" Name="insertDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="modifyDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="catName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GetAllCategory_Result">
+          <Property Type="Int32" Name="idCategory" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="insertDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="modifyDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UpdBook_Result">
+          <Property Type="Int32" Name="idBook" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="authors" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="year" Nullable="false" />
+          <Property Type="String" Name="theme" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="idCategory" Nullable="false" />
+          <Property Type="DateTime" Name="insertDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="modifyDate" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="UpdCategory_Result">
+          <Property Type="Int32" Name="idCategory" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="insertDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="modifyDate" Nullable="true" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LibraryModelStoreContainer" CdmEntityContainer="LibraryEntities">
+          <EntitySetMapping Name="Book">
+            <EntityTypeMapping TypeName="LibraryModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="idBook" ColumnName="idBook" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="authors" ColumnName="authors" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="theme" ColumnName="theme" />
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+                <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="LibraryModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+                <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DelBook" FunctionName="LibraryModel.Store.DelBook" />
+          <FunctionImportMapping FunctionImportName="DelCategory" FunctionName="LibraryModel.Store.DelCategory" />
+          <FunctionImportMapping FunctionImportName="GetAllBook" FunctionName="LibraryModel.Store.GetAllBook">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LibraryModel.GetAllBook_Result">
+                <ScalarProperty Name="idBook" ColumnName="idBook" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="authors" ColumnName="authors" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="theme" ColumnName="theme" />
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+                <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+                <ScalarProperty Name="catName" ColumnName="catName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetAllCategory" FunctionName="LibraryModel.Store.GetAllCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LibraryModel.GetAllCategory_Result">
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+                <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="InsBook" FunctionName="LibraryModel.Store.InsBook" />
+          <FunctionImportMapping FunctionImportName="InsCategory" FunctionName="LibraryModel.Store.InsCategory" />
+          <FunctionImportMapping FunctionImportName="UpdBook" FunctionName="LibraryModel.Store.UpdBook">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LibraryModel.UpdBook_Result">
+                <ScalarProperty Name="idBook" ColumnName="idBook" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="authors" ColumnName="authors" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="theme" ColumnName="theme" />
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+                <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="UpdCategory" FunctionName="LibraryModel.Store.UpdCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LibraryModel.UpdCategory_Result">
+                <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+                <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

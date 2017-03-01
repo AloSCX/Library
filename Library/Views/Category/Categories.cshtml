@@ -1,0 +1,42 @@
+﻿
+@model List<GetAllCategory_Result>
+
+@using (Html.BeginForm("Categories", "Category", FormMethod.Post))
+{
+    <section>
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Categorias</h2>
+                    <button type="submit" name="submit" value="New" class="btn btn-primary">Nuevo</button>
+                </div>
+                <br />
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id:</th>
+                                <th>Nombre:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int cntB = 0; cntB < Model.Count; cntB++)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayTextFor(bk => Model[cntB].idCategory)</td>
+                                    <td>@Html.DisplayTextFor(bk => Model[cntB].name)</td>
+                                    <td><button type="submit" name="submit" value="UpdCa.@Model[cntB].idCategory" class="btn btn-link">Modificar</button></td>
+                                    <td><button type="submit" name="submit" value="DelCa.@Model[cntB].idCategory" class="btn btn-link">Eliminar</button></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+                <div class="card-footer">
+                    <button type="submit" name="submit" value="Back" class="btn btn-primary">Regresar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+}

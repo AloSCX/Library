@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LibraryModelStoreContainer" CdmEntityContainer="LibraryEntities">
+    <EntitySetMapping Name="Book">
+      <EntityTypeMapping TypeName="LibraryModel.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="idBook" ColumnName="idBook" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="authors" ColumnName="authors" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="theme" ColumnName="theme" />
+          <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+          <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+          <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="LibraryModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+          <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="DelBook" FunctionName="LibraryModel.Store.DelBook" />
+    <FunctionImportMapping FunctionImportName="DelCategory" FunctionName="LibraryModel.Store.DelCategory" />
+    <FunctionImportMapping FunctionImportName="GetAllBook" FunctionName="LibraryModel.Store.GetAllBook">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LibraryModel.GetAllBook_Result">
+          <ScalarProperty Name="idBook" ColumnName="idBook" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="authors" ColumnName="authors" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="theme" ColumnName="theme" />
+          <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+          <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+          <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+          <ScalarProperty Name="catName" ColumnName="catName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetAllCategory" FunctionName="LibraryModel.Store.GetAllCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LibraryModel.GetAllCategory_Result">
+          <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+          <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsBook" FunctionName="LibraryModel.Store.InsBook" />
+    <FunctionImportMapping FunctionImportName="InsCategory" FunctionName="LibraryModel.Store.InsCategory" />
+    <FunctionImportMapping FunctionImportName="UpdBook" FunctionName="LibraryModel.Store.UpdBook">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LibraryModel.UpdBook_Result">
+          <ScalarProperty Name="idBook" ColumnName="idBook" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="authors" ColumnName="authors" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="theme" ColumnName="theme" />
+          <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+          <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+          <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="UpdCategory" FunctionName="LibraryModel.Store.UpdCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="LibraryModel.UpdCategory_Result">
+          <ScalarProperty Name="idCategory" ColumnName="idCategory" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="insertDate" ColumnName="insertDate" />
+          <ScalarProperty Name="modifyDate" ColumnName="modifyDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

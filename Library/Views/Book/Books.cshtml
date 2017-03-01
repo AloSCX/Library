@@ -1,0 +1,50 @@
+﻿
+@model List<GetAllBook_Result>
+
+@using (Html.BeginForm("Books", "Book", FormMethod.Post))
+{
+    <section>
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Libros</h2>
+                    <button type="submit" name="submit" value="New" class="btn btn-primary">Nuevo</button>
+                </div>
+                <br />
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th><button type="submit" name="submit" value="Sort.id" class="btn btn-link">Id:</button></th>
+                                <th><button type="submit" name="submit" value="Sort.name" class="btn btn-link">Nombre:</button></th>
+                                <th><button type="submit" name="submit" value="Sort.author" class="btn btn-link">Autor:</button></th>
+                                <th><button type="submit" name="submit" value="Sort.theme" class="btn btn-link">Tema:</button></th>
+                                <th><button type="submit" name="submit" value="Sort.year" class="btn btn-link">Año:</button></th>
+                                <th><button type="submit" name="submit" value="Sort.category" class="btn btn-link">Categoria:</button></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int cntB = 0; cntB < Model.Count; cntB++)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayTextFor(bk => Model[cntB].idBook)</td>
+                                    <td>@Html.DisplayTextFor(bk => Model[cntB].name)</td>
+                                    <td>@Html.DisplayTextFor(bk => Model[cntB].authors)</td>
+                                    <td>@Html.DisplayTextFor(bk => Model[cntB].theme)</td>
+                                    <td>@Html.DisplayTextFor(bk => Model[cntB].year.Year)</td>
+                                    <td>@Html.DisplayTextFor(bk => Model[cntB].catName)</td>
+                                    <td><button type="submit" name="submit" value="UpdBk.@Model[cntB].idBook" class="btn btn-link">Modificar</button></td>
+                                    <td><button type="submit" name="submit" value="DelBk.@Model[cntB].idBook" class="btn btn-link">Eliminar</button></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+                <div class="card-footer">
+                    <button type="submit" name="submit" value="Back" class="btn btn-primary">Regresar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+}

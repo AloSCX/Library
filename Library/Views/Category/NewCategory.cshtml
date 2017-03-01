@@ -1,0 +1,31 @@
+﻿
+@model GetAllCategory_Result
+
+@using (Html.BeginForm("NewCategory", "Category", FormMethod.Post))
+{
+    <section>
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Agregar Categoria</h2>
+                </div>
+                <br />
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Nombre:</td>
+                                <td>@Html.TextBoxFor(bk => Model.name, new { @class = "form-control" })</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+                <div class="card-footer">
+                    <button type="submit" name="submit" value="SaveNew" class="btn btn-primary">Guardar</button>
+                    <button type="submit" name="submit" value="CancelNew" class="btn btn-primary">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+}

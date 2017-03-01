@@ -1,0 +1,49 @@
+﻿
+@using Library.Models
+
+@model Library
+
+@using (Html.BeginForm("NewBook", "Book", FormMethod.Post))
+{
+    <section>
+        <div class="container">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Agregar Libro</h2>
+                </div>
+                <br />
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Nombre:</td>
+                                <td>@Html.TextBoxFor(bk => Model.book.name, new { @class = "form-control" })</td>
+                            </tr>
+                            <tr>
+                                <td>Autor:</td>
+                                <td>@Html.TextBoxFor(bk => Model.book.authors, new { @class = "form-control" })</td>
+                            </tr>
+                            <tr>
+                                <td>Tema:</td>
+                                <td>@Html.TextBoxFor(bk => Model.book.theme, new { @class = "form-control" })</td>
+                            </tr>
+                            <tr>
+                                <td>Fecha de publicacion:</td>
+                                <td>@Html.TextBoxFor(bk => Model.book.year, new { @class = "form-control" })</td>
+                            </tr>
+                            <tr>
+                                <td>Categoria:</td>
+                                <td>@Html.DropDownListFor(bk => Model.book.idCategory, new SelectList(Model.lstCategories, "idCategory", "name"), "Selecciona...", new { @class = "form-control" })</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br />
+                <div class="card-footer">
+                    <button type="submit" name="submit" value="SaveNew" class="btn btn-primary">Guardar</button>
+                    <button type="submit" name="submit" value="CancelNew" class="btn btn-primary">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+}
